@@ -13,13 +13,13 @@ const client = new elasticsearch.Client({
 
 
 /* GET users listing. */
-router.get('/indice', function(req, res, next) {
+router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
 
 
 
-router.get('/', function (req, res){
+router.get('/indice', function (req, res){
   client.indices.exists({index: 'scotch.io-tutorial'}, (err, res, status) => {
       if (res) {
           console.log('index already exists');
@@ -67,7 +67,7 @@ router.get('/search', function (req, res){
 
   router.get('/town', function (req, res) {
 
-  const cities = require('./cities.json');
+  const cities = require('../terminal/net/cities.json');
   // declare an empty array called bulk
   var bulk = [];
   //loop through each city and create and push two objects into the array in each loop
