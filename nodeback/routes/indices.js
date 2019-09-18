@@ -47,6 +47,35 @@ router.get('/search', function (req, res){
 
 })
 
+router.get('/town', function (req, res) {
+const cities = require('./cities.json');
+// declare an empty array called bulk
+var bulk = [];
+//loop through each city and create and push two objects into the array in each loop
+//first object sends the index and type you will be saving the data as
+//second object is the data you want to index
+cities.forEach(city =>{
+   bulk.push({index:{ 
+    country:"country", 
+                 _type:"name",
+             }          
+         })
+  bulk.push(city)
+})
+//perform bulk indexing of the data passed
+
+elastic.bulk({body:bulk}, function( err, response  ){ 
+     if( err ){ 
+         console.log("Failed Bulk operation".red, err) 
+     } else { 
+         console.log("Successfully imported %s".green, cities.length); 
+     } 
+}); 
+});
+
+
+
+
 
 
 
