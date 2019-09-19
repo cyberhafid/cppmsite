@@ -25,8 +25,6 @@ router.get('/service', function (req, res, next) {
 });
 
 
-
-
 router.get('/levelinfo', function (req, res, next) {  
   let body = {
     size: 200,
@@ -58,6 +56,43 @@ router.get('/levelinfo', function (req, res, next) {
     });
 
 
+    router.get('/levelinfotemps', function (req, res, next) {  
+      let body = {
+        size: 2,
+        from: 0, 
+        query: {
+          match: {
+            levelname:"INFO"
+             // name: req.query['q']
+          }
+        },
+        sort: [
+          {
+            '@timestamp': {
+              order: "desc"
+            }
+          }
+        ]
+      }
+      elastic.search({index:'france-grille-dirac-logs*',  body:body})
+    .then(function (result) { res.json(result) });
+      });
+
+      router.get('/leveltri', function (req, res, next) {  
+        let body = {
+          size: 0,
+          aggs: {
+             componentname: {
+                terms: {
+                   field: "componentname.keyword",
+                   size: 100
+                }
+             }
+          }
+        }
+        elastic.search({index:'france-grille-dirac-logs*',  body:body})
+      .then(function (result) { res.json(result) });
+        });
 
 
 
