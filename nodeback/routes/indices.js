@@ -3,8 +3,8 @@ var express = require('express');
 var router = express.Router();
 var elastic = new elasticsearch.Client({  
  // host: 'localhost:9200',
-  host: ['http://elastic:cppmcppm@127.0.0.1:9200/'],
-   //host: ['http://127.0.0.1:9200/'],
+  //host: ['http://elastic:cppmcppm@127.0.0.1:9200/'],
+   host: ['http://127.0.0.1:9200/'],
   log: 'trace'
 });
 
