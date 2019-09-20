@@ -40,16 +40,13 @@ export default class LevelPanel extends Component {
     </div>;
   }
 
- 
   render() {
-  
-    console.log('hhhh'+JSON.stringify(this.state.users))
     return (
-     
+    
      <div>
           <div className="content-section introduction">
             <div className="feature-intro">
-              <h1>Les feeeeServices</h1>
+              <h1>Les Services</h1>
               <p>Mise en place d'un texte de présentation...</p>
             </div>
           </div>
@@ -73,7 +70,26 @@ export default class LevelPanel extends Component {
                 </div>
               </TabPanel>
 
-         
+              <TabPanel header="attente de validation">
+                <div>
+                  <Fieldset legend="En cours">
+                  </Fieldset>
+                </div>
+              </TabPanel>
+
+              <TabPanel header="22">
+                <div>
+                  <Fieldset legend="En cours">
+                  </Fieldset>
+                </div>
+              </TabPanel>
+              <TabPanel id="4" header="Ajouter">
+                <div>
+                  <Fieldset legend="Remplir les champs suivants">
+           
+                  </Fieldset>
+                </div>
+              </TabPanel>
              </TabView>
           </div>
           </div>
