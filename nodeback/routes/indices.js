@@ -19,8 +19,8 @@ router.get('/', function (req, res, next) {
 
 router.get('/service', function (req, res, next) {  
   elastic.search(
-    {index: 'france-grille-dirac-logs*' }
-
+   // {index: 'france-grille-dirac-logs*' } filebeat-*
+   {index: 'filebeat-*' } 
   ).then(function (result) { res.json(result) });
 });
 
@@ -94,7 +94,21 @@ router.get('/levelinfo', function (req, res, next) {
       .then(function (result) { res.json(result) });
         });
 
-
+        router.get('/leveltrihouse', function (req, res, next) {  
+          let body = {
+            size: 0,
+            aggs: {
+               process: {
+                  terms: {
+                     field: "process.name",
+                     size: 100
+                  }
+               }
+            }
+          }
+          elastic.search({index:'filebeat-*',  body:body})
+        .then(function (result) { res.json(result) });
+          });
 
 
 
