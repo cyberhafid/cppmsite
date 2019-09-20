@@ -1,15 +1,13 @@
 import React, { Component } from 'react'
 import { Route, Switch } from 'react-router-dom';
-import Home from '../pages/Home';
-import Contact from '../pages/Contact';
-
-export default class Routeur extends Component {
+import Admin from '../components/Admin';
+export default class AppRouter extends Component {
   render() {
     return (
         <Switch>
-        <Route exact path="/" component={Home} />
-
-        <Route path="/contact" component={Contact} />
+    
+           <Route exact to='/admin' component={Admin} />
+                  
       </Switch>
     )
   }
