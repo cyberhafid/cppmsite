@@ -10,15 +10,17 @@ export class LevelService {
   )
 .then(res => res.data);
  }
- getUsers() {
+ getUserddds() {
   return  axios
   .get('http://marc.in2p3.fr:8080/api/v0/services',   {headers:("Access-Control-Allow-Methods: GET")}
 )
 .then(res => res.data);
 }
-getUsersdd() {
-  return  axios
-  .get('http://127.0.0.1:5000/indice/levelinfo'
+ getUsers() {
+   return  axios
+  .get('http://127.0.0.1:5000/indice/service',
+
+ 
 )
 .then(res => res.data);
 }
