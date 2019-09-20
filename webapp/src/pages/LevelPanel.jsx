@@ -8,10 +8,10 @@ import axios from 'axios';
     }
   
     componentDidMount() {
-      axios.get("http://localhost:5000/indice/service"
+      axios.get("http://localhost:5000/indice/leveltrihouse"
       ,   )
         .then(res => {
-          const persons = res.data.hits.hits;
+          const persons = res.data.aggregations.process.buckets;
           this.setState({ persons });
         })
     }
