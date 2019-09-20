@@ -1,0 +1,46 @@
+.mt-5 {
+
+    margin-top: 3rem !important;
+    color: rgb(14, 12, 12);
+  
+  }
+  
+  
+  
+  pre[class*="language-"] {
+    color: #f8f8f2;
+    background: none;
+    text-shadow: 0 1px rgba(0, 0, 0, 0.3);
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+  
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+  
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+  }
+  
+  /* Code blocks */
+  .pre{
+    padding: 1em;
+    margin: 1.5em 0;
+    overflow: auto;
+    background: #272822;
+  }
+  
+  :not(pre) > code[class*="language-"],
+  pre[class*="language-"] {
+    background: #272822;
+  }
+  
+  .token.function {
+    color: #e6db74;
+  }

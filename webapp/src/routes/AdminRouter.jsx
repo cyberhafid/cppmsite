@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import Dashboard from '../pages/Dashboard';
 import LevelPanel from '../pages/LevelPanel';
 import UserPanel from '../pages/UserPanel';
-import ServicePanel from '../pages/ServicelPanel';
+import ServicePanel from '../pages/ServicePanel';
 import DocApi from '../pages/DocApi';
 export default class AdminRouter extends Component {
   render() {

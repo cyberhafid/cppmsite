@@ -9,15 +9,15 @@ export default class ServicePanel extends Component {
         <div className="content-section introduction">
 
           <div className="feature-intro">
-            <h1>Les Services</h1>
+            <h1>Les Coiffeurs</h1>
             <p>Mise en place d'un texte de présentation...</p>
           </div>
         </div>
 
         <div className="content-section implementation">
           <TabView >
-            <TabPanel header="Tous les Services">
-         
+            <TabPanel header="Tous les Utilisateurs">
+     
             </TabPanel>
             <TabPanel header="attente de validation">
               <div>
@@ -25,7 +25,7 @@ export default class ServicePanel extends Component {
                 </Fieldset>
               </div>
             </TabPanel>
-            <TabPanel header="Services bannis">
+            <TabPanel header="Coiffeurs bannis">
               <div>
                 <Fieldset legend="En cours">
                 </Fieldset>
@@ -34,14 +34,14 @@ export default class ServicePanel extends Component {
             <TabPanel id="4" header="Ajouter">
               <div>
                 <Fieldset legend="Remplir les champs suivants">
-          
+             
                 </Fieldset>
               </div>
             </TabPanel>
             <TabPanel id="4" header="Modifier">
               <div>
                 <Fieldset legend="Remplir les champs suivants">
-            
+           
                 </Fieldset>
               </div>
             </TabPanel>
