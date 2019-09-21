@@ -15,13 +15,13 @@ export default class LevelPanel extends Component {
   constructor() {
     super();
     this.state = {
-   
+     
     };
     this.levelservice = new LevelService();
   }
 
   componentDidMount() {
-    this.levelservice.getUsers().then(data => this.setState({ users: data }));
+  this.levelservice.getUsers().then(data => this.setState({ users: data }));
   }
 
   actionTemplate(rowData, column) {
@@ -42,8 +42,8 @@ export default class LevelPanel extends Component {
 
  
   render() {
-  
-    console.log('hhhh'+JSON.stringify(this.state.users))
+    console.log('ddddddd'+JSON.stringify(this.state.users))
+    console.log('hhhh'+JSON.stringify(this.levelservice.getUsers()))
     return (
      
      <div>
@@ -63,7 +63,7 @@ export default class LevelPanel extends Component {
 
                     <DataTable value={this.state.users}>
                       <Column field="id" header="Nom" />
-                      <Column field="firstName" header="Prenom" />
+                      <Column field="key" header="Prenom" />
                       <Column field="lastName" header="ville" />
                       <Column field="email" header="mail" />
                       <Column body={this.actionTemplate} style={{ textAlign: 'center', width: '12em' }}  header="action" />

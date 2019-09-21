@@ -16,14 +16,32 @@ export class LevelService {
 )
 .then(res => res.data);
 }
- getUsers() {
-   return  axios
-  .get('http://127.0.0.1:5000/indice/service',
 
- 
-)
-.then(res => res.data);
+
+
+async getUsersff() {
+  await axios.get("http://localhost:5000/indice/leveltrihouse"
+  ,   )
+    .then(res => {
+      const persons = res.data;
+     // this.setState({ persons });
+     // console.log(persons);
+    })
+     // console.log(persons);
 }
+
+
+async getUsers() {
+   return  await axios
+  .get('http://localhost:5000/indice/leveltrihouse')
+.then(res => res.data.aggregations.process.buckets)
+.catch((error) => {console.log('heeeere',error);})
+;
+}
+
+
+
+
 
 
     getUserskk() {
@@ -60,5 +78,6 @@ export class LevelService {
 
 
 
-
 }
+
+
