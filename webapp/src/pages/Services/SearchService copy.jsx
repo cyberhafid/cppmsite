@@ -43,13 +43,7 @@ export class SearchService extends Component {
                 {label: 'kernel', value: 'kernel'}
             ];
 
-           // let brands =this.state.services.map((team) => <option label={team.doc_count} value={team.doc_count}>{team.key}</option>);
- 
-         //  let brands =   this.setState({ brands: [...this.state.services] })
-      
-
-         // const brands =this.state.services.map((item, label, value) => { label: item.length, value:item.key });
-
+        
 
 
         let brandFilter = <Dropdown style={{width: '100%'}}
@@ -63,7 +57,6 @@ export class SearchService extends Component {
                 <div className="content-section implementation">
                     <DataTable ref={(el) => this.dt = el} value={this.state.services} paginator={true} rows={10}
                    emptyMessage="No records found">
-              
                         <Column field="key" header="key" filter={true} filterElement={brandFilter} />
                         <Column field="vin" header="Vin" filter={true} />
                         <Column field="year" header="Year" filter={true} />

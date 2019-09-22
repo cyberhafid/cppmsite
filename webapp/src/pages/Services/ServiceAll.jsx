@@ -11,7 +11,9 @@ export class ServiceAll extends Component {
         super();
         this.state = {
             brandshh: null,
-            brand: null
+            brand: null,
+            services :[],
+            logsall: []
             
         };
         this.serviceactiv = new ServiceActiv();
@@ -25,17 +27,19 @@ export class ServiceAll extends Component {
     }
 
     onBrandChange(event) {
-        this.dt.filter(event.value, 'key', 'equals');
-        this.setState({brand: event.value});
-
-        
+        this.dt.filter(event.value, '_source.process.name', 'equals');
+        this.setState({brands: event.value});
     }
 
- 
+   
+    handleChange(value) {this.setState({ selected: value });}
+
+    //we are creating the options 
+
 
     render() {
 
-           console.log('ddddddd'+JSON.stringify(this.state.logsall))
+          
 
 
         let brandshh = [
@@ -47,12 +51,16 @@ export class ServiceAll extends Component {
                 {label: 'kernel', value: 'kernel'}
             ];
 
-            let brands = this.state.services;
+            //let brands = this.state.services;
+            let brands = this.state.logsall.map((icon) => {
+                return { label: icon._source.process.name, value: icon._source.process.name };
+              });
 
+                let brandFilter = <Dropdown style={{width: '100%'}}
+                value={this.state.logsall} options={brands} onChange={this.onBrandChange}/>
+       
 
-        let brandFilter = <Dropdown style={{width: '100%'}}
-                value={this.state.brand} options={brands} onChange={this.onBrandChange}/>
-
+                console.log('aaaaaa'+JSON.stringify(this.state.logsall))
  
         return (
         
@@ -60,8 +68,8 @@ export class ServiceAll extends Component {
                 <div className="content-section implementation">
                     <DataTable ref={(el) => this.dt = el} value={this.state.logsall} paginator={true} rows={10}
                    emptyMessage="No records found">
-                        <Column field="_source.message" header="_index" filter={true} filterElement={brandFilter} />
-                        <Column field="_source.process.name" header="Message" filter={true} />
+                        <Column field="_source.message" header="_index" filter={true}  />
+                        <Column field="_source.process.name" header="Message" filter={true} filterElement={brandFilter} />
                         <Column field="_source.@timestamp" header="Year" filter={true} />
                       
                 

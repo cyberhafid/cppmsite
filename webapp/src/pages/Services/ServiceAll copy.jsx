@@ -5,13 +5,14 @@ import {Dropdown} from 'primereact/dropdown';
 
 import { ServiceActiv } from '../../components/ServiceActiv';
 
-export class SearchService extends Component {
+export class ServiceAll extends Component {
 
     constructor() {
         super();
         this.state = {
-            brand: null,
-            addItem :''
+            brandshh: null,
+            brand: null
+            
         };
         this.serviceactiv = new ServiceActiv();
         this.onBrandChange = this.onBrandChange.bind(this);
@@ -20,53 +21,49 @@ export class SearchService extends Component {
 
     componentDidMount() {
         this.serviceactiv.getServices().then(data => this.setState({ services: data }));
+        this.serviceactiv.getLogServices().then(data => this.setState({ logsall: data }));
     }
 
     onBrandChange(event) {
         this.dt.filter(event.value, 'key', 'equals');
-        this.setState({brand: event.value});
+        this.setState({brands: event.value});
+
+        
     }
 
  
 
     render() {
 
-    
+          
 
 
-       let brands = [
+        let brandshh = [
                 {label: 'All Brands', value: null},
-                {label: 'logstash', value: "kjjhj"},
+                {label: 'logstash', value: "logstash"},
                 {label: 'NetworkManager', value: 'NetworkManager'},
                 {label: 'systemd', value: 'systemd'},
                 {label: 'dhclient', value: 'dhclient'},
                 {label: 'kernel', value: 'kernel'}
             ];
 
-           // let brands =this.state.services.map((team) => <option label={team.doc_count} value={team.doc_count}>{team.key}</option>);
- 
-         //  let brands =   this.setState({ brands: [...this.state.services] })
-      
-
-         // const brands =this.state.services.map((item, label, value) => { label: item.length, value:item.key });
-
+            let brands = this.state.services;
+            
 
 
         let brandFilter = <Dropdown style={{width: '100%'}}
-                value={this.state.services} options={brands} onChange={this.onBrandChange}/>
-
+                value={this.state.logsall} options={brands} onChange={this.onBrandChange}/>
                 console.log('ddddddd'+JSON.stringify(this.state.services))
  
         return (
         
 
                 <div className="content-section implementation">
-                    <DataTable ref={(el) => this.dt = el} value={this.state.services} paginator={true} rows={10}
+                    <DataTable ref={(el) => this.dt = el} value={this.state.logsall} paginator={true} rows={10}
                    emptyMessage="No records found">
-              
-                        <Column field="key" header="key" filter={true} filterElement={brandFilter} />
-                        <Column field="vin" header="Vin" filter={true} />
-                        <Column field="year" header="Year" filter={true} />
+                        <Column field="_source.message" header="_index" filter={true}  />
+                        <Column field="_source.process.name" header="Message" filter={true} filterElement={brandFilter} />
+                        <Column field="_source.@timestamp" header="Year" filter={true} />
                       
                 
                     </DataTable>
