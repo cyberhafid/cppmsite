@@ -54,13 +54,6 @@ export default class ServicePanel extends Component {
             </TabPanel>
   
 
-            <TabPanel id="4" header="Modifier">
-              <div>
-                <Fieldset legend="Remplir les champs suivants">
-           
-                </Fieldset>
-              </div>
-            </TabPanel>
           </TabView>
         </div>
       </div>

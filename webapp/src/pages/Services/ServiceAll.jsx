@@ -39,21 +39,10 @@ export class ServiceAll extends Component {
 
     render() {
 
-          
-
-
-        let brandshh = [
-                {label: 'All Brands', value: null},
-                {label: 'logstash', value: "logstash"},
-                {label: 'NetworkManager', value: 'NetworkManager'},
-                {label: 'systemd', value: 'systemd'},
-                {label: 'dhclient', value: 'dhclient'},
-                {label: 'kernel', value: 'kernel'}
-            ];
 
             //let brands = this.state.services;
-            let brands = this.state.logsall.map((icon) => {
-                return { label: icon._source.process.name, value: icon._source.process.name };
+            let brands = this.state.services.map((icon) => {
+                return { label: icon.key, value: icon.key };
               });
 
                 let brandFilter = <Dropdown style={{width: '100%'}}
@@ -65,14 +54,13 @@ export class ServiceAll extends Component {
         return (
         
 
-                <div className="content-section implementation">
+                <div className="content-section implementation" >
                     <DataTable ref={(el) => this.dt = el} value={this.state.logsall} paginator={true} rows={10}
-                   emptyMessage="No records found">
-                        <Column field="_source.message" header="_index" filter={true}  />
-                        <Column field="_source.process.name" header="Message" filter={true} filterElement={brandFilter} />
-                        <Column field="_source.@timestamp" header="Year" filter={true} />
-                      
-                
+                   emptyMessage="No records found" >
+                                
+                        <Column field="_source.@timestamp" header="Year"  filter={true}  style={{width:'20%', fontWeight:'bold'}}/>
+                        <Column field="_source.process.name" header="Message"  filter={true} filterElement={brandFilter} style={{width:'20%'}} />
+                        <Column field="_source.message" header="_index"  filter={true} style={{width:'60%'}} />
                     </DataTable>
                 </div>
 

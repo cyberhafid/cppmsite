@@ -11,7 +11,9 @@ export class ServiceAll extends Component {
         super();
         this.state = {
             brandshh: null,
-            brand: null
+            brand: null,
+            services :[],
+            logsall: []
             
         };
         this.serviceactiv = new ServiceActiv();
@@ -25,35 +27,29 @@ export class ServiceAll extends Component {
     }
 
     onBrandChange(event) {
-        this.dt.filter(event.value, 'key', 'equals');
+        this.dt.filter(event.value, '_source.process.name', 'equals');
         this.setState({brands: event.value});
-
-        
     }
 
- 
+   
+    handleChange(value) {this.setState({ selected: value });}
+
+    //we are creating the options 
+
 
     render() {
 
-          
 
+            //let brands = this.state.services;
+            let brands = this.state.services.map((icon) => {
+                return { label: icon.key, value: icon.key };
+              });
 
-        let brandshh = [
-                {label: 'All Brands', value: null},
-                {label: 'logstash', value: "logstash"},
-                {label: 'NetworkManager', value: 'NetworkManager'},
-                {label: 'systemd', value: 'systemd'},
-                {label: 'dhclient', value: 'dhclient'},
-                {label: 'kernel', value: 'kernel'}
-            ];
-
-            let brands = this.state.services;
-            
-
-
-        let brandFilter = <Dropdown style={{width: '100%'}}
+                let brandFilter = <Dropdown style={{width: '100%'}}
                 value={this.state.logsall} options={brands} onChange={this.onBrandChange}/>
-                console.log('ddddddd'+JSON.stringify(this.state.services))
+       
+
+                console.log('aaaaaa'+JSON.stringify(this.state.logsall))
  
         return (
         
