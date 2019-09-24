@@ -3,8 +3,8 @@ var express = require('express');
 var router = express.Router();
 var elastic = new elasticsearch.Client({  
  // host: 'localhost:9200',
-  host: ['http://elastic:cppmcppm@127.0.0.1:9200/'],
-   //host: ['http://127.0.0.1:9200/'],
+  //host: ['http://elastic:cppmcppm@127.0.0.1:9200/'],
+   host: ['http://127.0.0.1:9200/'],
   log: 'trace'
 });
 
@@ -19,8 +19,8 @@ router.get('/', function (req, res, next) {
 
 router.get('/service', function (req, res, next) {  
   elastic.search(
-    {index: 'france-grille-dirac-logs*' }
-
+   // {index: 'france-grille-dirac-logs*' } filebeat-*
+   {index: 'filebeat-*' } 
   ).then(function (result) { res.json(result) });
 });
 
@@ -94,9 +94,37 @@ router.get('/levelinfo', function (req, res, next) {
       .then(function (result) { res.json(result) });
         });
 
+        router.get('/servicestrihouse', function (req, res, next) {  
+          let body = {
+            size: 0,
+            aggs: {
+               process: {
+                  terms: {
+                     field: "process.name",
+                     size: 100
+                  }
+               }
+            }
+          }
+          elastic.search({index:'filebeat-*',  body:body})
+        .then(function (result) { res.json(result) });
+          });
 
 
+          router.get('/serviceall', function (req, res, next) {  
+           
+            let body = {
+              size: 50,
+              query: { "match_all": {} },
 
+  _source: ["@timestamp", "message", "name", "process.name"],
+            }
+                    
+            elastic.search(
+            // {index: 'france-grille-dirac-logs*' } filebeat-*
+             {index: 'filebeat-*',body :body, } 
+            ).then(function (result) { res.json(result) });
+          });
 
 
 

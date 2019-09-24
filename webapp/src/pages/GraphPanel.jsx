@@ -1,40 +1,42 @@
 import React, { Component } from 'react';
 import { TabView, TabPanel } from 'primereact/tabview';
 import { Fieldset } from 'primereact/fieldset';
-
-export default class LevelPanel extends Component {
+import { PieChart } from './Graphiques/PieChart';
+import { LineChart } from './Graphiques/LineChart';
+import { BarChart } from './Graphiques/BarChart';
+import { ComboChart } from './Graphiques/ComboChart';
+export default class GraphPanel extends Component {
   render() {
     return (
         <div>
         <div className="content-section introduction">
 
-          <div className="feature-intro">
-            <h1>Les Coiffeurs</h1>
-            <p>Mise en place d'un texte de présentation...</p>
-          </div>
+
         </div>
 
         <div className="content-section implementation">
           <TabView >
-            <TabPanel header="Liste des services">
-     
+            <TabPanel header="PieChart">
+     <PieChart />
             </TabPanel>
-            <TabPanel header="attente de validation">
+            <TabPanel header="LineChart">
               <div>
                 <Fieldset legend="En cours">
+                <LineChart />
                 </Fieldset>
               </div>
             </TabPanel>
-            <TabPanel header="Coiffeurs bannis">
+            <TabPanel header="Bar Chart">
               <div>
                 <Fieldset legend="En cours">
+                <BarChart />
                 </Fieldset>
               </div>
             </TabPanel>
-            <TabPanel id="4" header="Ajouter">
+            <TabPanel id="4" header="Combo Chart">
               <div>
                 <Fieldset legend="Remplir les champs suivants">
-             
+                <ComboChart />
                 </Fieldset>
               </div>
             </TabPanel>
