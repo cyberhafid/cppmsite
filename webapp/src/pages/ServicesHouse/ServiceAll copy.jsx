@@ -27,7 +27,7 @@ export class ServiceAll extends Component {
     }
 
     onBrandChange(event) {
-        this.dt.filter(event.value, [0], 'equals');
+        this.dt.filter(event.value, '_source.process.name', 'equals');
         this.setState({brands: event.value});
     }
 
@@ -37,39 +37,31 @@ export class ServiceAll extends Component {
     //we are creating the options 
 
 
-
-    actionTemplate(rowData, column) {
-        return <span> {rowData.message + rowData.spacer + 'var'+ rowData.varmessage}</span>;
-    }
-
-
-
-
     render() {
 
 
             //let brands = this.state.services;
             let brands = this.state.services.map((icon) => {
-               return { label: icon, value: icon };
+                return { label: icon.key, value: icon.key };
               });
 
                 let brandFilter = <Dropdown style={{width: '100%'}}
                 value={this.state.logsall} options={brands} onChange={this.onBrandChange}/>
        
 
-                console.log('logs'+JSON.stringify(this.state.logsall))
+                console.log('aaaaaa'+JSON.stringify(this.state.logsall))
  
         return (
         
 
-                <div className="content-section implementation" >
+                <div className="content-section implementation">
                     <DataTable ref={(el) => this.dt = el} value={this.state.logsall} paginator={true} rows={10}
-                   emptyMessage="No records found" >
-                                
-                        <Column field="asctime" header="date"  filter={true}  style={{width:'20%', fontWeight:'bold'}}/>
-                        <Column field="customname" header="service"  filter={true} filter={true} filterElement={brandFilter}  style={{width:'10%'}} />
-                        <Column field="levelname" header="level"  filter={true} style={{width:'10%'}} />
-                        <Column body={this.actionTemplate} style={{textAlign:'center', width: '60%'}}/>
+                   emptyMessage="No records found">
+                        <Column field="_source.message" header="_index" filter={true}  />
+                        <Column field="_source.process.name" header="Message" filter={true} filterElement={brandFilter} />
+                        <Column field="_source.@timestamp" header="Year" filter={true} />
+                      
+                
                     </DataTable>
                 </div>
 

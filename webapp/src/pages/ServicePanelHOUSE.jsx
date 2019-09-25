@@ -4,14 +4,13 @@ import { Fieldset } from 'primereact/fieldset';
 import SelectList from './Services/SelectList';
 import { SearchService } from './Services/SearchService';
 import { TypeTest } from './Services/TypeTest';
-import { ServiceAll } from './Services/ServiceAll';
-import ServiceAxios from './axios';
+
 
 
 export default class ServicePanel extends Component {
   render() {
     return (
-      <div>
+        <div>
         <div className="content-section introduction">
 
           <div className="feature-intro">
@@ -23,35 +22,19 @@ export default class ServicePanel extends Component {
         <div className="content-section implementation">
           <TabView >
 
-     
 
-
-
-
-
-          <TabPanel id="4" header="ServiceALL tous les services">
+          <TabPanel id="4" header="TYPESTE tous les services">
               <div>
                 <Fieldset legend="Remplir les champs suivants">
-             <ServiceAll />
+             <TypeTest />
                 </Fieldset>
               </div>
             </TabPanel>
 
-
-
-
-            <TabPanel header="Axios ">
+          <TabPanel header="TypeTest ">
               <div>
                 <Fieldset legend="En cours">
-                  <ServiceAxios />
-                </Fieldset>
-              </div>
-            </TabPanel>
-
-            <TabPanel header="TypeTest ">
-              <div>
-                <Fieldset legend="En cours">
-                  <TypeTest />
+                <TypeTest  />  
                 </Fieldset>
               </div>
             </TabPanel>
@@ -59,22 +42,17 @@ export default class ServicePanel extends Component {
             <TabPanel header="SearchService ">
               <div>
                 <Fieldset legend="En cours">
-                  <SearchService />
+                <SearchService />  
                 </Fieldset>
               </div>
             </TabPanel>
 
+
+
             <TabPanel header="SelectList Liste des services+ bouton">
-              <SelectList />
+     <SelectList />
             </TabPanel>
-            
-            <TabPanel header="TypeTest ">
-              <div>
-                <Fieldset legend="En cours">
-                  <TypeTest />
-                </Fieldset>
-              </div>
-            </TabPanel>
+  
 
           </TabView>
         </div>

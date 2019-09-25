@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {DataTable} from 'primereact/datatable';
 import {Column} from 'primereact/column';
 import {Dropdown} from 'primereact/dropdown';
-import axios from 'axios';
+
 import { ServiceActiv } from '../../components/ServiceActiv';
 
 export class ServiceAll extends Component {
@@ -18,49 +18,23 @@ export class ServiceAll extends Component {
         };
         this.serviceactiv = new ServiceActiv();
         this.onBrandChange = this.onBrandChange.bind(this);
-        this.getLogServices = this.getLogServices.bind(this);
+
     }
 
     componentDidMount() {
         this.serviceactiv.getServices().then(data => this.setState({ services: data }));
-        this.getLogServices()
+        this.serviceactiv.getLogServices().then(data => this.setState({ logsall: data }));
     }
 
     onBrandChange(event) {
-        this.dt.filter(event.value, [0], 'equals');
+        this.dt.filter(event.value, '_source.process.name', 'equals');
         this.setState({brands: event.value});
-      
-        //console.log('onbrand'+JSON.stringify(this.state.brands))
     }
 
+   
+    handleChange(value) {this.setState({ selected: value });}
 
-//componentDidUpdate(){
- //   if (this.state.logsall === this.state.brands)
-  //  {this.getLogServices();}
-    
-//}
-
-
-
-    getLogServices() {
-       // const league= this.props.match.params.id;
-       const league= this.state.brands;
-       console.log('bizarrrreee'+JSON.stringify(league))
-       return  axios
-      .get(`http://marc.in2p3.fr:8080/api/v0/msgs/${league}`  )
-     .then(res => {
-        const logsall= res.data;
-        this.setState({ logsall});
-     
-      });
-    }
-
-  
-    actionTemplate(rowData, column) {
-        return <span> {rowData.message + rowData.spacer + 'var'+ rowData.varmessage}</span>;
-    }
-
-
+    //we are creating the options 
 
 
     render() {
@@ -68,14 +42,14 @@ export class ServiceAll extends Component {
 
             //let brands = this.state.services;
             let brands = this.state.services.map((icon) => {
-               return { label: icon, value: icon };
+                return { label: icon.key, value: icon.key };
               });
 
                 let brandFilter = <Dropdown style={{width: '100%'}}
                 value={this.state.logsall} options={brands} onChange={this.onBrandChange}/>
        
 
-                console.log('logs'+JSON.stringify(this.state.brands))
+                console.log('aaaaaa'+JSON.stringify(this.state.logsall))
  
         return (
         
@@ -84,10 +58,9 @@ export class ServiceAll extends Component {
                     <DataTable ref={(el) => this.dt = el} value={this.state.logsall} paginator={true} rows={10}
                    emptyMessage="No records found" >
                                 
-                        <Column field="asctime" header="date"  filter={true}  style={{width:'20%', fontWeight:'bold'}}/>
-                        <Column field="customname" header="service"  filter={true} filter={true} filterElement={brandFilter}  style={{width:'10%'}} />
-                        <Column field="levelname" header="level"  filter={true} style={{width:'10%'}} />
-                        <Column body={this.actionTemplate} style={{textAlign:'center', width: '60%'}}/>
+                        <Column field="_source.@timestamp" header="Year"  filter={true}  style={{width:'20%', fontWeight:'bold'}}/>
+                        <Column field="_source.process.name" header="Message"  filter={true} filterElement={brandFilter} style={{width:'20%'}} />
+                        <Column field="_source.message" header="_index"  filter={true} style={{width:'60%'}} />
                     </DataTable>
                 </div>
 
