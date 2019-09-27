@@ -12,7 +12,7 @@ export class ServiceActiv {
 
 
  getLogServices() {
-   const league= this.props.match.params.id;
+   const league= 'WorkloadManagement/SiteDirectorBiomed-1';
   return  axios
  .get(`http://marc.in2p3.fr:8080/api/v0/msgs/${league}`  )
 .then(res => res.data);

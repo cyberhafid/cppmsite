@@ -31,7 +31,7 @@ export default class ServicePanel extends Component {
 
           <TabPanel id="4" header="ServiceALL tous les services">
               <div>
-                <Fieldset legend="Selectionner le service">
+                <Fieldset legend="Remplir les champs suivants">
              <ServiceAll />
                 </Fieldset>
               </div>
@@ -40,11 +40,41 @@ export default class ServicePanel extends Component {
 
 
 
+            <TabPanel header="Axios ">
+              <div>
+                <Fieldset legend="En cours">
+                  <ServiceAxios />
+                </Fieldset>
+              </div>
+            </TabPanel>
+
+            <TabPanel header="TypeTest ">
+              <div>
+                <Fieldset legend="En cours">
+                  <TypeTest />
+                </Fieldset>
+              </div>
+            </TabPanel>
+
+            <TabPanel header="SearchService ">
+              <div>
+                <Fieldset legend="En cours">
+                  <SearchService />
+                </Fieldset>
+              </div>
+            </TabPanel>
+
             <TabPanel header="SelectList Liste des services+ bouton">
               <SelectList />
             </TabPanel>
             
-       
+            <TabPanel header="TypeTest ">
+              <div>
+                <Fieldset legend="En cours">
+                  <TypeTest />
+                </Fieldset>
+              </div>
+            </TabPanel>
 
           </TabView>
         </div>
