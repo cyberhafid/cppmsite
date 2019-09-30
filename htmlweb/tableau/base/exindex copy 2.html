@@ -21,13 +21,13 @@
                 
                 function listService() { 
                      var services = "<option>Please Select</option>";
-                     var  data = axios.get('http://pokeapi.co/api/v2/pokemon/' )
-                    .then(response => response.data.results );
+                     var  data = axios.get('https://pokeapi.co/api/v2/pokemon/' )
+                    .then(response => response );
                  
 
-//console.log(data);
-                    for (i=0; i < data.length; i++) {
-                        services += "<option>" + data[i] +data+ "</option>";
+console.log(data);
+                    for (i=0; i < data.results.length; i++) {
+                        services += "<option>" + data.results[i] +data.results + "</option>";
 
                     }
                     document.getElementById("service").innerHTML = services;

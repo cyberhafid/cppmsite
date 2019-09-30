@@ -1,71 +1,114 @@
-
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>JavaScript fetch()</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-            crossorigin="anonymous">
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js" >
-   
-            <script type="text/javascript">
-                var zoneDistrict = {
-                    "Mechi": ["Jhapa", "Illam", "Panchthar", "Taplejung"],
-                    "Koshi": ["Sunsari", "Morang", "Bhojpur", "Dhankuta", "Tehrathum", "Sankhuwasabha"],
-                    "Sagarmatha": ["Siraha", "Saptari", "Udayapur", "Khotang", "Okhaldhunga", "Solukhumbu"]
-                }
-                
-                window.onload = function() {    
-                    listService();
-                };
-                
-                function listService() { 
-                     var services = "<option>Please Select</option>";
-  
- 
-                     var  data =  fetch('http://pokeapi.co/api/v2/pokemon/')
-                   .then(res => res.json())
-                 .then((out) => {
-        console.log('Output: ', out);
-}).catch(err => console.error(err));
 
-console.log('ok'+ data.results.name);
-                    for (i=0; i < data.length; i++) {
-                        services += "<option>" + data[i] +data+ "</option>";
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <title>JavaScript fetch()</title>
 
-                    }
-                    document.getElementById("service").innerHTML = services;
-                }
-                    
-            
-            </script> 
-   
-   
-        </head>
-    <body class="col-md-12">
-        <h1>Recup des données elastic</h1>
-        <div id="display-resources">
-            <p>En attente.</p>
+    <script type="text/javascript">
+    </script>
+</head>
 
-
-            <a href="#" class="btn btn-primary" onclick="loadfetchCity()">loadfetchCity</a>
-             <button onclick="loadfetchPoke()">loadfetchPoke</button>
-              <a href="#" class="btn btn-primary" onclick="myaxiosFunction()">myaxiosFunction</a>
-
-    
-              <form>
-                <p>
-                    <select id="service" onchange="listService(this.value)">
-                        <option>Please Select</option>
-                    </select>
-                </p>
-                      </form>
+<body class="col-md-12">
+    <h1>Recup des données elastic</h1>
+    <div>
+        <p>En attente.</p>
+        <a href="#" class="btn btn-primary" onclick="loadfetchCity()">loadfetchCity</a>
     </div>
 
-      <script src="source.js"></script>
-      <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-   
+    <div id="content">
+        <select id="locality-dropdown" name="locality">
+        </select>
+    </div>
+
+    <div id="display-resources">
+    </div>
+
+
+
+
+
+    <script>
+        function loadfetchCity() {
+            let displayResources = document.querySelector("#display-resources");
+            displayResources.textContent =
+                "Loading data from JSON source...";
+            fetch(
+                    "https://geo.api.gouv.fr/departements/13/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&format=json&geometry=centre")
+
+                .then(function (response) {
+                    if (response.ok)
+                        return response.json();
+                    throw new Error('Response is not OK');
+                })
+                .then(function (result) {
+                    let output =
+                        "<table class='table table-striped'><thead><tr><th scope='col'>Name</th><th scope='col'>Provider</th><th>URL</th></thead><tbody>";
+                    for (let i in result) {
+                        output +=
+                            "<tr><td>" +
+                            result[i].code +
+                            "</td><td>" +
+                            result[i].nom +
+                            "</td><td>" +
+                            result[i].population +
+                            "</td></tr>";
+                    }
+                    output += "</tbody></table>";
+                    displayResources.innerHTML = output;
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        };
+
+
+        let dropdown = document.getElementById('locality-dropdown');
+dropdown.length = 0;
+
+let defaultOption = document.createElement('option');
+defaultOption.text = 'Choose State/Province';
+
+dropdown.add(defaultOption);
+dropdown.selectedIndex = 0;
+
+const url = 'https://pokeapi.co/api/v2/pokemon';
+
+fetch(url)  
+  .then(  
+    function(response) {  
+      if (response.status !== 200) {  
+        console.warn('Looks like there was a problem. Status Code: ' + 
+          response.status);  
+        return;  
+      }
+
+      // Examine the text in the response  
+      response.json().then(function(data) {  
+      //  data=data.results;
+    console.log(response);
+        let option;
       
-     
-    </body>
+    	for (let i = 0; i < data.results.length; i++) {
+          option = document.createElement('option');
+      	  option.text = data.results[i].name;
+      	//  option.value = data[i].abbreviation;
+      	  dropdown.add(option);
+    	}    
+      });  
+    }  
+  )  
+  .catch(function(err) {  
+    console.error('Fetch Error -', err);  
+  });
+
+
+
+
+    </script>
+
+
+</body>
+
 </html>
