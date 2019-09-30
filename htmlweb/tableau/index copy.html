@@ -21,15 +21,11 @@
                 
                 function listService() { 
                      var services = "<option>Please Select</option>";
-  
- 
-                     var  data =  fetch('http://pokeapi.co/api/v2/pokemon/')
-                   .then(res => res.json())
-                 .then((out) => {
-        console.log('Output: ', out);
-}).catch(err => console.error(err));
+                     var  data = axios.get('http://pokeapi.co/api/v2/pokemon/' )
+                    .then(response => response.data.results );
+                 
 
-console.log('ok'+ data.results.name);
+//console.log(data);
                     for (i=0; i < data.length; i++) {
                         services += "<option>" + data[i] +data+ "</option>";
 
