@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+
+</head>
+
+<body>
+    <div id="content">
+        <select id="locality-dropdown" name="locality">
+        </select>
+    </div>
+
+
+     <script type="text/javascript" charset="utf-8">
+      // https://www.codebyamir.com/blog/populate-a-select-dropdown-list-with-json
+let dropdown = document.getElementById('locality-dropdown');
+dropdown.length = 0;
+
+let defaultOption = document.createElement('option');
+defaultOption.text = 'Choose State/Province';
+
+dropdown.add(defaultOption);
+dropdown.selectedIndex = 0;
+
+const url = 'https://pokeapi.co/api/v2/pokemon';
+
+fetch(url)  
+  .then(  
+    function(response) {  
+      if (response.status !== 200) {  
+        console.warn('Looks like there was a problem. Status Code: ' + 
+          response.status);  
+        return;  
+      }
+
+      // Examine the text in the response  
+      response.json().then(function(data) {  
+      //  data=data.results;
+    console.log(response);
+        let option;
+      
+    	for (let i = 0; i < data.results.length; i++) {
+          option = document.createElement('option');
+      	  option.text = data.results[i].name;
+      	//  option.value = data[i].abbreviation;
+      	  dropdown.add(option);
+    	}    
+      });  
+    }  
+  )  
+  .catch(function(err) {  
+    console.error('Fetch Error -', err);  
+  });
+        </script>
+</body>
+
+</html>
