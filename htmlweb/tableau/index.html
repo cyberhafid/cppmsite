@@ -1,70 +1,110 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <title>JavaScript fetch()</title>
-
-    <script type="text/javascript">
-    </script>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
+<body>
 
-<body class="col-md-12">
-    <h1>Recup des données elastic</h1>
-    <div>
-        <p>En attente.</p>
-        <a href="#" class="btn btn-primary" onclick="loadfetchCity()">loadfetchCity</a>
+<div class="jumbotron text-center">
+  <h1>My First Bootstrap Page</h1>
+  <p>Resize this responsive page to see the effect!</p> 
+</div>
+  
+<div class="container">
+  <div class="row">
+    <div id="content" class="col-sm-4">
+
+        <div class="form-group">
+            <label for="locality-dropdown">Select list:</label>
+            <select class="form-control"  id="locality-dropdown" name="locality">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+            </select>
+          </div>
+
+
     </div>
 
-    <div id="content">
-        <select id="locality-dropdown" name="locality">
-        </select>
-    </div>
-
-    <div id="display-resources">
+    <div class="col-sm-4">
+      <h3>SERVICE</h3>
+      <a href="#" class="btn btn-primary" onclick="loadfetchCity()">loadfetchCity</a>
     </div>
 
 
+    <div class="col-sm-4">
+    <div class="dropup">
+        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Dropup Example
+        <span class="caret"></span></button>
+        <ul class="dropdown-menu"  id="locality-dropdown" name="locality">
+      
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  
+  </div>
 
 
 
-    <script>
-        function loadfetchCity() {
-            let displayResources = document.querySelector("#display-resources");
-            displayResources.textContent =
-                "Loading data from JSON source...";
-            fetch(
-                    "https://geo.api.gouv.fr/departements/13/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&format=json&geometry=centre")
 
-                .then(function (response) {
-                    if (response.ok)
-                        return response.json();
-                    throw new Error('Response is not OK');
-                })
-                .then(function (result) {
-                    let output =
-                        "<table class='table table-striped'><thead><tr><th scope='col'>Name</th><th scope='col'>Provider</th><th>URL</th></thead><tbody>";
-                    for (let i in result) {
-                        output +=
-                            "<tr><td>" +
-                            result[i].code +
-                            "</td><td>" +
-                            result[i].nom +
-                            "</td><td>" +
-                            result[i].population +
-                            "</td></tr>";
-                    }
-                    output += "</tbody></table>";
-                    displayResources.innerHTML = output;
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
-        };
+  <div class="container">
+  <div class="row" id="display-resources">
+    
+  </div>
+</div>
+</div>
+</div>
+
+<script>
 
 
-        let dropdown = document.getElementById('locality-dropdown');
+
+
+    function loadfetchCity() {
+        let displayResources = document.querySelector("#display-resources");
+        displayResources.textContent =
+            "Loading data from JSON source...";
+        fetch(
+                "https://geo.api.gouv.fr/departements/13/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&format=json&geometry=centre")
+
+            .then(function (response) {
+                if (response.ok)
+                    return response.json();
+                throw new Error('Response is not OK');
+            })
+            .then(function (result) {
+                let output =
+                    "<table class='table table-striped'><thead><tr><th scope='col'>Name</th><th scope='col'>Provider</th><th>URL</th></thead><tbody>";
+                for (let i in result) {
+                    output +=
+                        "<tr><td>" +
+                        result[i].code +
+                        "</td><td>" +
+                        result[i].nom +
+                        "</td><td>" +
+                        result[i].population +
+                        "</td></tr>";
+                }
+                output += "</tbody></table>";
+                displayResources.innerHTML = output;
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    };
+
+
+
+
+    let dropdown = document.getElementById('locality-dropdown');
 dropdown.length = 0;
 
 let defaultOption = document.createElement('option');
@@ -76,39 +116,43 @@ dropdown.selectedIndex = 0;
 const url = 'https://pokeapi.co/api/v2/pokemon';
 
 fetch(url)  
-  .then(  
-    function(response) {  
-      if (response.status !== 200) {  
-        console.warn('Looks like there was a problem. Status Code: ' + 
-          response.status);  
-        return;  
-      }
+.then(  
+function(response) {  
+  if (response.status !== 200) {  
+    console.warn('Looks like there was a problem. Status Code: ' + 
+      response.status);  
+    return;  
+  }
 
-      // Examine the text in the response  
-      response.json().then(function(data) {  
-      //  data=data.results;
-    console.log(response);
-        let option;
-      
-    	for (let i = 0; i < data.results.length; i++) {
-          option = document.createElement('option');
-      	  option.text = data.results[i].name;
-      	//  option.value = data[i].abbreviation;
-      	  dropdown.add(option);
-    	}    
-      });  
-    }  
-  )  
-  .catch(function(err) {  
-    console.error('Fetch Error -', err);  
-  });
-
-
+  // Examine the text in the response  
+  response.json().then(function(data) {  
+  //  data=data.results;
+//console.log(response);
+    let option;
+  
+  for (let i = 0; i < data.results.length; i++) {
+      option = document.createElement('option');
+      option.text = data.results[i].name;
+    //  option.value = data[i].abbreviation;
+      dropdown.add(option);
+  }    
+  });  
+}  
+)  
+.catch(function(err) {  
+console.error('Fetch Error -', err);  
+});
 
 
-    </script>
+
+
+</script>
+
+
 
 
 </body>
-
 </html>
+
+
+
