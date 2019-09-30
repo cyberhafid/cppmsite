@@ -73,7 +73,7 @@ defaultOption.text = 'Choose State/Province';
 dropdown.add(defaultOption);
 dropdown.selectedIndex = 0;
 
-const url = 'https://pokeapi.co/api/v2/pokemon';
+const url = 'http://marc.in2p3.fr:8080/api/v0/services';
 
 fetch(url)  
   .then(  
@@ -92,7 +92,7 @@ fetch(url)
       
     	for (let i = 0; i < data.results.length; i++) {
           option = document.createElement('option');
-      	  option.text = data.results[i].name;
+      	  option.text = data[i];
       	//  option.value = data[i].abbreviation;
       	  dropdown.add(option);
     	}    
