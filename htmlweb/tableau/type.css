@@ -1,33 +1,19 @@
 body {
-   background-color: #10889E;
+   background-color: rgb(255, 255, 255);
    font-family: Verdana;
+   width: 80%;
+   margin-left: auto;
+   margin-right: auto;
  }
 h1 {
    text-align: center;
    font-size: 3em;
-   color: #445566;
+   color: #1661ac;
    font-family: Georgia, Times, Serif;
    font-weight: normal;
    margin: 0;
    padding: 20px;
  }
  .container {
-   width: 960px;
-   margin: auto;
-   background-color: #E1F1F2;
- }
-
-#main {
-   width: 650px;
-   float: right;
-   margin-right: 30px;
-   line-height: 20px;
- }
- 
- footer {
-   height: 50px;
-   background-color: lightgrey;
-   clear: both;
-   https://codepen.io/wcc/pen/LDqlI
-   
+   background-color: rgb(218, 221, 221);
  }
