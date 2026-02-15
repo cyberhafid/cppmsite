@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" style="text/css" href="type.css" />
+  <script type="language/javascript">
+    var chaine = "Hello World !";
+    document.write(chaine);
+    </script>
+
+</head>
+<body onload="loadfetchService()" >
+
+  <div class="container">
+  <h1>CPPM service log DIRACC</h1>
+  </div>
+</br>
+  
+<div class="container">
+    <div class="row">
+      </br>
+    </div>
+  <div class="row">
+    <div id="content" class="col-sm-4">
+
+        <div class="form-group">
+            <label for="service-dropdown">Select list:</label>
+            <select class="form-control" onchange="loadfetchData()" id="service-dropdown" name="service">
+            </select>
+          </div>
+    </div>
+    <div id="content" class="col-sm-4">
+        <div class="form-group">
+        <label  >ordi</label>
+        <h4 id="txt" ></h4>
+        </div>
+    
+    </div>
+
+    <div id="content" class="col-sm-2">
+      <div class="form-group">
+          <label for="nbr-page">ligne</label>
+          <select class="form-control" id="page-dropdown" onchange="loadfetchDataRefresh()" name="page">
+            <option>10</option>
+            <option>50</option>
+            <option>100</option>
+          </select>
+        </div>
+  </div>
+  <div id="content" class="col-sm-2">
+    <div class="form-group">
+      
+        <label for="nbr-page">Refresh</label>
+        <select class="form-control" id="refresh-dropdown" onchange="loadfetchDataRefresh()" name="refresh">
+          <option value="5000">5 sec</option>
+          <option value="0">0 sec</option>
+          <option value="5000">5 sec</option>
+          <option value="10000">10 sec</option>
+          <option value="30000">30 sec</option>
+        </select>
+      </div>
+</div>
+
+  </div> 
+</br>
+</div>
+<div class="row">
+</br>
+</div>
+<div class="container">
+  <div class="row" id="display-resources">
+    
+  </div>
+</div>
+
+
+<script type="text/javascript" src="source.js" ></script> 
+ 
+
+
+</body>
+</html>
+
+

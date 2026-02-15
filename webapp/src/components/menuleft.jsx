@@ -10,9 +10,10 @@ export default class MenuLeft extends Component {
         {
           label: 'GENERAL',
           items: [{label: 'Home', icon: 'pi pi-fw pi-home', url: '/admin'},
-          {label: 'Level', icon: 'pi pi-fw pi-calendar',url: '/admin/levels'},
           {label: 'Service', icon: 'pi pi-fw pi-file',url: '/admin/services' },
-          {label: 'User', icon: 'pi pi-fw pi-user', url: '/admin/users'}
+          {label: 'Level', icon: 'pi pi-fw pi-calendar',url: '/admin/levels'},
+          {label: 'User', icon: 'pi pi-fw pi-user', url: '/admin/users'},
+          {label: 'Graphiques', icon: 'pi pi-fw pi-calendar', url: '/admin/chart'}
             ]
         },
      

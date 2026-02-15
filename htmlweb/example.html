@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+
+            <script type="text/javascript">
+            function loadfetchCity(){
+
+$(document).ready(function() {
+    var events = $('#events');
+    var table = $('#example').DataTable( {
+        select: true
+    } );
+ 
+    table
+        .on( 'select', function ( e, dt, type, indexes ) {
+            var rowData = table.rows( indexes ).data().toArray();
+            events.prepend( '<div><b>'+type+' selection</b> - '+JSON.stringify( rowData )+'</div>' );
+        } )
+        .on( 'deselect', function ( e, dt, type, indexes ) {
+            var rowData = table.rows( indexes ).data().toArray();
+            events.prepend( '<div><b>'+type+' <i>de</i>selection</b> - '+JSON.stringify( rowData )+'</div>' );
+        } );
+} );
+            }
+            </script>
+
+        </head>
+
+        <body>
+
+
+                <table id="example" class="display" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Position</th>
+                                <th>Office</th>
+                                <th>Age</th>
+                                <th>Start date</th>
+                                <th>Salary</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Tiger Nixon</td>
+                                <td>System Architect</td>
+                                <td>Edinburgh</td>
+                                <td>61</td>
+                                <td>2011/04/25</td>
+                                <td>$320,800</td>
+                            </tr>
+                            </tbody>
+                </table>
+                <a href="#" class="btn btn-primary" onclick="loadfetchCity()">loadfetchCity</a>
+
+
+        </body>
+</html>

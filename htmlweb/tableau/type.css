@@ -1,0 +1,19 @@
+body {
+   background-color: rgb(255, 255, 255);
+   font-family: Verdana;
+   width: 80%;
+   margin-left: auto;
+   margin-right: auto;
+ }
+h1 {
+   text-align: center;
+   font-size: 3em;
+   color: #1661ac;
+   font-family: Georgia, Times, Serif;
+   font-weight: normal;
+   margin: 0;
+   padding: 20px;
+ }
+ .container {
+   background-color: rgb(218, 221, 221);
+ }
